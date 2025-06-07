@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <title>我的待辦事項</title>
+    <meta charset="UTF-8" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f5f5f5;
+        color: #333;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      h1 {
+        text-align: center;
+        background: #ecf0f1;
+        padding: 20px;
+        border-radius: 10px;
+        color: #2c3e50;
+      }
+
+      h2 {
+        color: #e74c3c;
+        border-left: 4px solid #e74c3c;
+        padding-left: 10px;
+      }
+
+      h3 {
+        color: #3498db;
+        background: #ebf3fd;
+        padding: 10px;
+        border-radius: 5px;
+      }
+
+      .highlight {
+        background: #fff3cd;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-weight: bold;
+      }
+
+      .completed {
+        color: #6c757d;
+        background: #e9ecef;
+        padding: 8px;
+        border-radius: 5px;
+        border-left: 3px solid #6c757d;
+      }
+
+      .center { text-align: center; }
+
+      .form-section {
+        background: #e8f4fd;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 8px;
+      }
+
+      .form-section label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+
+      .form-section textarea, .form-section select {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #86cfda;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+
+      .form-section button {
+        background: #17a2b8;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .form-section button:hover {
+        background: #138496;
+      }
+
+      ol li, ul li {
+        background: #fff;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 5px;
+        border: 1px solid #e9ecef;
+      }
+
+      li button {
+        background: #dc3545;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 3px;
+        margin: 5px 5px 0 0;
+        cursor: pointer;
+        font-size: 12px;
+      }
+
+      li button:first-of-type {
+        background: #28a745;
+      }
+
+      li button:hover {
+        opacity: 0.8;
+      }
+
+      hr {
+        border: none;
+        border-top: 2px solid #dee2e6;
+        margin: 30px 0;
+      }
+
+      img {
+        border-radius: 50%;
+        border: 3px solid #3498db;
+        margin: 15px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="center">
+      <h1>我的待辦清單</h1>
+    </div>
+
+    <h2>今日目標</h2>
+    <p>
+      今天是
+      <span class="highlight">2025年1月</span>，讓我們一起完成這些重要的任務！
+    </p>
+    <p>記住，每完成一個小任務都是進步，不要給自己太大壓力。</p>
+    <div class="center">
+      <img
+        src="https://avatars.githubusercontent.com/yorukot"
+        alt="Yorukot 的頭像"
+        width="150"
+      />
+    </div>
+
+    <hr />
+
+    <div class="form-section">
+      <h3>新增待辦事項</h3>
+      <p>想要新增更多待辦事項嗎？在下方留言給我：</p>
+
+      <label for="new-task">新的待辦事項：</label>
+      <textarea
+        id="new-task"
+        name="new-task"
+        rows="3"
+        cols="40"
+        placeholder="輸入你的新任務..."
+      ></textarea>
+
+      <label for="completed">是否已完成：</label>
+      <select id="completed" name="completed">
+        <option value="false">未完成</option>
+        <option value="true">已完成</option>
+      </select>
+
+      <button onclick="createTodo()">新增任務</button>
+    </div>
+
+    <hr />
+
+    <h3>待完成事項</h3>
+    <ol id="pending-list">
+    </ol>
+
+    <hr />
+
+    <h3>已完成事項</h3>
+    <ul id="completed-list">
+    </ul>
+
+    <script>
+      const API_URL = "http://localhost:8000";
+
+      loadTodos();
+
+      async function loadTodos() {
+        const response = await fetch(`${API_URL}/todos`);
+        const data = await response.json();
+
+        data.forEach((todo) => {
+          if (todo.completed) {
+            document.getElementById(
+              "completed-list"
+            ).innerHTML += `<li class="completed">
+              <del>${todo.title}</del>
+              <br>
+              <button onclick="editTodo(${todo.id}, '${todo.title}', ${todo.completed})">編輯</button>
+              <button onclick="deleteTodo(${todo.id})">刪除</button>
+            </li>`;
+          } else {
+            document.getElementById(
+              "pending-list"
+            ).innerHTML += `<li>
+              <b>${todo.title}</b>
+              <br>
+              <button onclick="editTodo(${todo.id}, '${todo.title}', ${todo.completed})">編輯</button>
+              <button onclick="deleteTodo(${todo.id})">刪除</button>
+            </li>`;
+          }
+        });
+      }
+
+      async function createTodo() {
+        const title = document.getElementById("new-task").value;
+        const completed = document.getElementById("completed").value === "true";
+
+        if (!title.trim()) {
+          alert("請輸入待辦事項內容");
+          return;
+        }
+
+        const response = await fetch(`${API_URL}/todo`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ title, completed }),
+        });
+
+        loadTodos(); // 重新載入列表
+      }
+
+      async function deleteTodo(id) {
+        if (confirm("確定要刪除這個待辦事項嗎？")) {
+          const response = await fetch(`${API_URL}/todo/${id}`, {
+            method: "DELETE",
+          });
+          loadTodos(); // 重新載入列表
+        }
+      }
+
+      async function editTodo(id, title, completed) {
+        const newTitle = prompt("編輯待辦事項:", title);
+        if (newTitle && newTitle.trim()) {
+          const response = await fetch(`${API_URL}/todo/${id}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ title: newTitle, completed }),
+          });
+          loadTodos(); // 重新載入列表
+        }
+      }
+    </script>
+  </body>
+</html>
