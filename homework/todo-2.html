@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <title>我的待辦事項</title>
+    <meta charset="UTF-8" />
+  </head>
+
+  <body>
+    <h1>我的待辦清單</h1>
+
+    <h2>今日目標</h2>
+    <img
+      src="https://avatars.githubusercontent.com/yorukot"
+      alt="Yorukot 的頭像"
+      width="150"
+    />
+
+    <hr />
+
+    <h3>新增待辦事項</h3>
+    <p>想要新增更多待辦事項嗎？在下方留言給我：</p>
+
+    <label for="new-task">新的待辦事項：</label>
+    <br />
+    <textarea
+      id="new-task"
+      name="new-task"
+      rows="3"
+      cols="40"
+      placeholder="輸入你的新任務..."
+    ></textarea>
+    <br />
+
+    <label for="completed">是否已完成：</label>
+    <select id="completed" name="completed">
+      <option value="false">未完成</option>
+      <option value="true">已完成</option>
+    </select>
+
+    <br />
+    <br />
+
+    <button type="submit">新增任務</button>
+
+    <hr />
+
+    <h3>待完成事項</h3>
+    <ol>
+      <li>
+        <b>完成 HTML 作業</b>
+      </li>
+      <li>
+        <b>買晚餐</b>
+      </li>
+      <li>
+        <b>準備明天的報告</b>
+      </li>
+      <li>
+        <b>學習新的程式語言</b>
+      </li>
+    </ol>
+
+    <hr />
+
+    <h3>已完成事項</h3>
+    <ul>
+      <li>
+        <del>學習 HTML 基礎</del>
+      </li>
+      <li>
+        <del>整理房間</del>
+      </li>
+      <li>
+        <del>看完程式設計教學影片</del>
+      </li>
+    </ul>
+  </body>
+</html>

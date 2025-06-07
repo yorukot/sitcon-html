@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <title>我的待辦事項</title>
+    <meta charset="UTF-8" />
+    <style>
+      body {
+        font-family: Arial, Microsoft JhengHei, sans-serif;
+        background-color: #f5f5f5;
+        color: #333;
+        font-size: 16px;
+      }
+
+      h1 {
+        color: #2c3e50;
+        text-align: center;
+        font-size: 32px;
+        font-weight: bold;
+        background-color: #ecf0f1;
+      }
+
+      h2 {
+        color: #e74c3c;
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      h3 {
+        color: #3498db;
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      h4 {
+        color: #9b59b6;
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      .completed {
+        color: #6c757d;
+        background-color: #e9ecef;
+      }
+
+      .center {
+        text-align: center;
+      }
+
+      .form-section {
+        background-color: #e8f4fd;
+        color: #0c5460;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="center">
+      <h1>我的待辦清單</h1>
+    </div>
+
+    <h2>今日目標</h2>
+    <div class="center">
+      <img
+        src="https://avatars.githubusercontent.com/yorukot"
+        alt="Yorukot 的頭像"
+        width="150"
+      />
+    </div>
+
+    <hr />
+
+    <div class="form-section">
+      <h3>新增待辦事項</h3>
+      <p>想要新增更多待辦事項嗎？在下方留言給我：</p>
+
+      <label for="new-task">新的待辦事項：</label>
+      <br />
+      <textarea
+        id="new-task"
+        name="new-task"
+        rows="3"
+        cols="40"
+        placeholder="輸入你的新任務..."
+      ></textarea>
+      <br />
+
+      <label for="completed">是否已完成：</label>
+      <select id="completed" name="completed">
+        <option value="false">未完成</option>
+        <option value="true">已完成</option>
+      </select>
+
+      <br />
+      <br />
+
+      <button>新增任務</button>
+    </div>
+
+    <hr />
+
+    <h3>待完成事項</h3>
+    <ol>
+      <li>
+        <b>完成 HTML 作業</b>
+      </li>
+      <li>
+        <b>買晚餐</b>
+      </li>
+      <li>
+        <b>準備明天的報告</b>
+      </li>
+      <li>
+        <b>學習新的程式語言</b>
+      </li>
+    </ol>
+
+    <hr />
+
+    <h3>已完成事項</h3>
+    <ul>
+      <li class="completed">
+        <del>學習 HTML 基礎</del>
+      </li>
+      <li class="completed">
+        <del>整理房間</del>
+      </li>
+      <li class="completed">
+        <del>看完程式設計教學影片</del>
+      </li>
+    </ul>
+  </body>
+</html>
