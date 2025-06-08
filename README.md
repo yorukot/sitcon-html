@@ -1,3 +1,6 @@
+
+# 這個 README 是由 AI 產生的 可能有大量錯誤！！！
+
 # SITCON HTML 學習專案
 
 這是一個完整的前端開發學習專案，涵蓋了 HTML、CSS 和 JavaScript 的基礎知識，以及實際的專案練習。
