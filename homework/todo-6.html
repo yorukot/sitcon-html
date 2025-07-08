@@ -185,6 +185,9 @@
       }
     }
 
+    // 頁面載入時自動載入待辦事項
+    loadTodos();
+
     // 完成待辦事項
     async function completeTodo(id, title) {
       await fetch(`${API_URL}/todo/${id}`, {
@@ -202,8 +205,5 @@
       });
       loadTodos();
     }
-
-    // 頁面載入時自動載入待辦事項
-    loadTodos();
   </script>
 </html>
