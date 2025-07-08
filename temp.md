@@ -1,0 +1,4 @@
+TODO1=10mins
+TODO2=15mins
+TODO3=15mins
+TODO4=20mins

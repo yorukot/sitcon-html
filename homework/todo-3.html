@@ -1,132 +1,122 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
   <head>
-    <title>我的待辦事項</title>
     <meta charset="UTF-8" />
+    <title>我的代辦事項</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Huninn&display=swap" rel="stylesheet">
     <style>
       body {
-        font-family: Arial, Microsoft JhengHei, sans-serif;
-        background-color: #f5f5f5;
-        color: #333;
+        font-family: "Huninn", sans-serif;
+        background-color: #17171c;
+        color: #eee;
         font-size: 16px;
       }
 
-      h1 {
-        color: #2c3e50;
+      .main-title {
+        color: #eee;
         text-align: center;
-        font-size: 32px;
         font-weight: bold;
-        background-color: #ecf0f1;
+        font-size: 36px;
+        background-color: #22222a;
       }
 
-      h2 {
-        color: #e74c3c;
+      .section-title {
+        color: #4ecdc4;
+        font-weight: bold;
         font-size: 24px;
-        font-weight: bold;
       }
 
-      h3 {
-        color: #3498db;
-        font-size: 20px;
+      .form-label {
+        color: #eee;
         font-weight: bold;
+        font-size: 16px;
       }
 
-      h4 {
-        color: #9b59b6;
+      .form-input {
+        font-family: "Huninn", sans-serif;
+        font-size: 16px;
+        color: #ffffff;
+        background-color: #22222a;
+      }
+
+      .btn-primary {
+        background-color: #e17055;
+        color: #fff;
+        font-family: "Huninn", sans-serif;
         font-size: 18px;
         font-weight: bold;
       }
 
-      .completed {
-        color: #6c757d;
-        background-color: #e9ecef;
+      .todo-list {
+        font-size: 18px;
+        background-color: #22222a;
       }
 
-      .center {
-        text-align: center;
+      .todo-item {
+        color: #ffeaa7;
+        font-weight: bold;
+        font-size: 20px;
       }
 
-      .form-section {
-        background-color: #e8f4fd;
-        color: #0c5460;
+      .completed-item {
+        color: #00b894;
+        font-size: 22px;
       }
     </style>
   </head>
-
   <body>
-    <div class="center">
-      <h1>我的待辦清單</h1>
-    </div>
+    <h1 class="main-title">我的待辦清單</h1>
 
-    <h2>今日目標</h2>
-    <div class="center">
-      <img
-        src="https://avatars.githubusercontent.com/yorukot"
-        alt="Yorukot 的頭像"
-        width="150"
-      />
-    </div>
+    <hr>
 
-    <hr />
+    <h3 class="section-title">新增待辦事項</h3>
+    <label class="form-label">新的待辦事項：</label>
+    <input type="text" class="form-input" placeholder="輸入新的待辦事項">
 
-    <div class="form-section">
-      <h3>新增待辦事項</h3>
-      <p>想要新增更多待辦事項嗎？在下方留言給我：</p>
+    <br>
+    <label class="form-label">狀態：</label>
 
-      <label for="new-task">新的待辦事項：</label>
-      <br />
-      <textarea
-        id="new-task"
-        name="new-task"
-        rows="3"
-        cols="40"
-        placeholder="輸入你的新任務..."
-      ></textarea>
-      <br />
+    <select class="form-input">
+      <option value="true">已完成</option>
+      <option value="false">未完成</option>
+    </select>
 
-      <label for="completed">是否已完成：</label>
-      <select id="completed" name="completed">
-        <option value="false">未完成</option>
-        <option value="true">已完成</option>
-      </select>
+    <br>
+    <label class="form-label">備註：</label>
+    <textarea rows="1" class="form-input" placeholder="輸入詳細備註"></textarea>
+    <br>
+    <button type="button" class="btn-primary">新增</button>
 
-      <br />
-      <br />
+    <hr>
 
-      <button>新增任務</button>
-    </div>
-
-    <hr />
-
-    <h3>待完成事項</h3>
-    <ol>
+    <h3 class="section-title">待完成事項</h3>
+    <ol class="todo-list">
       <li>
-        <b>完成 HTML 作業</b>
+        <label class="todo-item">
+          <input type="checkbox"> 完成 HTML 作業
+        </label>
       </li>
       <li>
-        <b>買晚餐</b>
+        <label class="todo-item">
+          <input type="checkbox"> 買晚餐<br>記得買飲料
+        </label>
       </li>
       <li>
-        <b>準備明天的報告</b>
-      </li>
-      <li>
-        <b>學習新的程式語言</b>
+        <label class="todo-item">
+          <input type="checkbox"> 準備明天的報告<br>整理資料<br>製作投影片
+        </label>
       </li>
     </ol>
 
-    <hr />
+    <hr>
 
-    <h3>已完成事項</h3>
-    <ul>
-      <li class="completed">
-        <del>學習 HTML 基礎</del>
-      </li>
-      <li class="completed">
-        <del>整理房間</del>
-      </li>
-      <li class="completed">
-        <del>看完程式設計教學影片</del>
-      </li>
+    <h3 class="section-title">已完成事項</h3>
+    <ul class="todo-list">
+      <li class="completed-item">✓ 學習 HTML 基礎</li>
+      <li class="completed-item">✓ 整理房間</li>
     </ul>
+
   </body>
 </html>
